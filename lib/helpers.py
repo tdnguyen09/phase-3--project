@@ -55,5 +55,17 @@ def delete_album():
             print("No albums were deleted.")
     session.close()
 
+def update_name_album(new_name):
+    session = Session()
+    id = input("Enter id to update:")
+    album = session.query(Album).filter_by(id = id).first()
+    if not album:
+        print("No data found.")
+    else:
+        album.name = new_name
+        session.commit()
+        print(f"Album {id} updated successfully with the new {new_name}")
+    session.close()
+
 
 
