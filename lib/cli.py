@@ -1,4 +1,4 @@
-from helpers import retrieve_albums, add_album, delete_album, update_name_album
+from helpers import retrieve_albums, add_album, delete_album, update_album
 
 def main():
     while True:
@@ -6,7 +6,7 @@ def main():
         print("1. Retrieve all students")
         print("2. Add a new album")
         print("3. Delete an album")
-        print("4. Update the name of an album")
+        print("4. Update the information of an album")
         print("5. Exit")
 
         choice = input("Enter your choice: ")
@@ -18,8 +18,7 @@ def main():
         elif choice == "3":
             delete_album()
         elif choice == "4":
-            new_name = input("Enter new name: ")
-            update_name_album(new_name)
+            update_album()
         elif choice == "5":
             print("Exiting the application")
             break

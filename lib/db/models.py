@@ -8,7 +8,7 @@ sys.path.append(os.getcwd())
 from datetime import datetime
 
 from sqlalchemy import create_engine, desc
-from sqlalchemy import (CheckConstraint, UniqueConstraint, Column, DateTime, Integer, String)
+from sqlalchemy import (CheckConstraint, UniqueConstraint, Column, DateTime, Integer, String, Float)
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -24,12 +24,14 @@ class Album(Base):
     name = Column(String(), index=True)
     artist = Column(String())
     release_date = Column(DateTime())
+    price = Column(Float())
 
     def __repr__(self):
         return f"Album {self.id}:" \
-            + f"{self.name}," \
-            + f"Artist: {self.artist}," \
-            + f"{self.release_date}" 
+            + f"{self.name}, " \
+            + f"Artist: {self.artist}, " \
+            + f"{self.release_date}, "  \
+            + f"{self.price}"
 
 
 Base.metadata.create_all(engine)
