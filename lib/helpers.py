@@ -3,8 +3,27 @@ import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'db'))
 
-from models import Album, Session
+from models import Album, Artist, Session
 from datetime import datetime
+
+def retrieve_artists():
+    session = Session()
+    artists = session.query(Artist).all()
+    if artists:
+        for artist in artists:
+            print(artist)
+    else:
+        print("No data found.")
+    session.close()
+
+def add_artist():
+    session = Session()
+    name = input("Enter artist's name: ")
+    new_artist = Artist(name=name)
+    session.add(new_artist)
+    session.commit()
+    session.close()
+    
 
 def retrieve_albums():
     session = Session()
@@ -68,9 +87,10 @@ def update_album():
             print("1. Update name")
             print("2. Update artist")
             print("3. Update release date")
-            print("4. Exit")
+            print("4. Update artist id")
+            print("5. Exit")
 
-            option = input("Please select number from 1 to 3: ")
+            option = input("Please select number from 1 to 5: ")
             
             if option == "1":
                 new_name = input("Enter the new name: ")
@@ -93,8 +113,13 @@ def update_album():
                     print(f"Album {id} updated successfully with the new release date {new_release_date} ")
                     break
                 except ValueError:
-                    print(f"Invalid date format. Please enter the date in DD-MM-YYYY format.")                  
+                    print(f"Invalid date format. Please enter the date in DD-MM-YYYY format.")  
             elif option == "4":
+                new_artist_id = input("Enter the new artist id: ")
+                album.artist_id = new_artist_id
+                session.commit()
+                print(f'Album {id} updated successfully with the new artist id {new_artist_id}')                
+            elif option == "5":
                 break
             else: 
                 print("Please only select number from 1 to 4.")
