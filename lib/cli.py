@@ -3,7 +3,7 @@ from helpers import retrieve_albums, add_album, delete_album, update_album
 def main():
     while True:
         print("Album Management CLI")
-        print("1. Retrieve all students")
+        print("1. Retrieve all albums")
         print("2. Add a new album")
         print("3. Delete an album")
         print("4. Update the information of an album")

@@ -19,11 +19,12 @@ def retrieve_albums():
 def add_album():
     session = Session()
     name = input("Enter album name: ")
-    artist = input("Enter artist: ")
+    artist_name = input("Enter artist: ")
     release_date = input("Enter release date (DD-MM-YYYY): ")
+    artist_id = input("Enter artist id: ")
     try:
         release_date = datetime.strptime(release_date, "%d-%m-%Y")
-        new_album = Album(name=name, artist= artist, release_date=release_date)
+        new_album = Album(name=name, artist_name= artist_name, release_date=release_date, artist_id = artist_id)
         session.add(new_album)
         session.commit()
         print(f"Album {name} added successfully.")
@@ -78,10 +79,10 @@ def update_album():
                 print(f"Album {id} updated successfully with the new name {new_name}")
                 break
             elif option == "2":
-                new_artist = input("Enter the artist: ")
-                album.artist = new_artist
+                new_artist_name = input("Enter the artist: ")
+                album.artist_name = new_artist_name
                 session.commit()
-                print(f"Album {id} updated successfully with the artist {new_artist}")
+                print(f"Album {id} updated successfully with the artist {new_artist_name}")
                 break
             elif option == "3":
                 new_release_date = input("Enter release date (DD-MM-YYYY): ")
@@ -92,7 +93,7 @@ def update_album():
                     print(f"Album {id} updated successfully with the new release date {new_release_date} ")
                     break
                 except ValueError:
-                    print(f"Invalid date format. Please enter the date in DD-MM-YYYY format.")
+                    print(f"Invalid date format. Please enter the date in DD-MM-YYYY format.")                  
             elif option == "4":
                 break
             else: 
