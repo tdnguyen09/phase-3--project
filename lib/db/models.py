@@ -17,6 +17,10 @@ engine = create_engine('sqlite:///albums.db')
 
 Base = declarative_base()
 
+convention = {
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+}
+
 class Artist (Base):
     __tablename__="artists"
 
